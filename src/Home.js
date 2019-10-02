@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PostList from "./components/PostList";
+import PostListContainer from "./containers/PostListContainer";
 
 class Home extends Component {
   render() {
@@ -9,7 +9,7 @@ class Home extends Component {
           Welcome to Microblog, our innovative site for communicating on the
           information superhighway
         </p>
-        <PostList />
+        <PostListContainer />
       </section>
     );
   }

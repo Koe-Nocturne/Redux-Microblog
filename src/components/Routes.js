@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import NewPostForm from './NewPostForm';
+import NewPostFormContainer from '../containers/NewPostFormContainer';
 import Home from '../Home';
-import Post from './Post';
+import PostContainer from '../containers/PostContainer';
 
 class Routes extends React.Component {
   
@@ -12,9 +12,9 @@ class Routes extends React.Component {
         <Route exact path="/"
           render={() => <Home />}/>
         <Route exact path="/new/"
-          render={() => <NewPostForm />}/>
+          render={() => <NewPostFormContainer />}/>
         <Route exact path="/:id"
-          render={() => <Post />}/>
+          render={() => <PostContainer />}/>
         <Redirect to="/" />
       </Switch>
     )

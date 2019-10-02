@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { deletePost, editPost } from '../actions';
-import PostList from '../components/PostList';
+import Post from '../components/Post';
 
 function mapStateToProps(state) {
   return {
@@ -8,4 +8,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { deletePost, editPost })(PostList);
+export default connect(mapStateToProps, { deletePost, editPost })(Post);

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { addPost } from '../actions';
-import PostList from '../components/PostList';
+import NewPostForm from '../components/NewPostForm';
 
 function mapStateToProps(state) {
   return {
@@ -8,4 +8,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addPost })(PostList);
+export default connect(mapStateToProps, { addPost })(NewPostForm);

@@ -7,6 +7,7 @@ export function addPost(postData) {
   }
 }
 export function deletePost(id) {
+  console.log("actions delete:", id);
   return {
     type: DELETE_POST,
     payload: id

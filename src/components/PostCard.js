@@ -1,16 +1,18 @@
 import React from "react";
 import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class PostCard extends React.Component{
   render() {
+    const { title, description, id } = this.props.post;
     return(
-      <Card>
+      <Card className="col-4">
         <CardBody>
           <CardTitle>
-            Title Title
+            <Link to={`/${id}`}>{ title }</Link>
           </CardTitle>
           <CardText>
-            Text Text
+            { description }
           </CardText>
         </CardBody>
       </Card>

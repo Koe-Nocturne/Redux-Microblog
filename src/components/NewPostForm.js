@@ -1,24 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
 import { withRouter } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 class NewPostForm extends React.Component {
   static defaultProps = {
-    title: "",
-    description: "",
-    body: ""
+    post: {
+      title: "",
+      description: "",
+      body: ""
+    }
   };
   constructor(props) {
     super(props);
 
     this.state = {
-      title: this.props.title,
-      description: this.props.description,
-      body: this.props.body
+      title: this.props.post.title,
+      description: this.props.post.description,
+      body: this.props.post.body
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.goHome = this.goHome.bind(this);
   }
 
   handleChange(evt) {
@@ -28,10 +31,16 @@ class NewPostForm extends React.Component {
   //eventually will be async/await
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.handleAdd(this.state);
+    if (this.props.addPost) {
+      this.props.addPost(this.state);
+    } else {
+      this.props.editPost({...this.state, id: this.props.post.id});
+    }
     this.props.history.push("/");
   }
-
+  goHome() {
+    this.props.history.push("/");
+  }
   render() {
     return (
       <div className="container">
@@ -68,7 +77,7 @@ class NewPostForm extends React.Component {
           </FormGroup>
           <Button>Save</Button>
         </Form>
-        <Button>Cancel</Button>
+        <Button onClick={this.goHome}>Cancel</Button>
       </div>
     );
   }
