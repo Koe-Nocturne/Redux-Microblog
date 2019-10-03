@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, EDIT_POST, ADD_COMMENT } from './actionTypes';
+import { ADD_POST, DELETE_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT } from './actionTypes';
 
 export function addPost(postData) {
   return {
@@ -7,7 +7,6 @@ export function addPost(postData) {
   }
 }
 export function deletePost(id) {
-  console.log("actions delete:", id);
   return {
     type: DELETE_POST,
     payload: id
@@ -24,5 +23,13 @@ export function addComment(id, comment) {
   return {
     type: ADD_COMMENT,
     payload: { id, comment }
+  }
+}
+
+//will need both postid and id
+export function deleteComment(id) {
+  return {
+    type: DELETE_COMMENT,
+    payload: id
   }
 }

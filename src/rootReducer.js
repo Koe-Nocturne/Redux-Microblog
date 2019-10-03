@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, EDIT_POST, ADD_COMMENT } from './actionTypes'
+import { ADD_POST, DELETE_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT } from './actionTypes'
 
 const INITIAL_STATE = { posts: [], count: 1 }
 
@@ -33,15 +33,25 @@ function rootReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         posts: state.posts.map(post => {
-          if(post.id === action.payload.id) {
+          if(post.id === +action.payload.id) {
             return { ...post, comments: [...post.comments, action.payload.comment]};
           }
           return post;
         })
       }
 
+      case DELETE_COMMENT:
+        return {
+          ...state,
+          posts: state.posts.map(post => {
+            if(post.id === +action.payload.id) {
+              return { ...post, comments: post.comments.filter(comment =>  comment.id !== action.payload)};
+            }
+            return post;
+          })
+        }
+
     default:
-      console.warn("cannot find thing", action.type);
       return state;
   }
 }
