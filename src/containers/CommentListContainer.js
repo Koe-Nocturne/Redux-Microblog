@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addComment } from '../actions';
+import { addComment, deleteComment } from '../actions';
 import CommentList from '../components/CommentList';
 
 function mapStateToProps(state, ownProps) {
@@ -9,4 +9,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, {addComment})(CommentList);
+export default connect(mapStateToProps, {addComment, deleteComment})(CommentList);

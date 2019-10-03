@@ -1,4 +1,5 @@
-import { ADD_POST, DELETE_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT } from './actionTypes'
+import { ADD_POST, DELETE_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT } from './actionTypes';
+import uuid from 'uuid/v4';
 
 const INITIAL_STATE = { posts: [], count: 1 }
 
@@ -8,22 +9,22 @@ function rootReducer(state = INITIAL_STATE, action) {
     case ADD_POST:
       return {
         ...state,
-        count: state.count +1, 
-        posts: [...state.posts, { ...action.payload, id: state.count, comments: []}]
+        count: state.count + 1,
+        posts: [...state.posts, { ...action.payload, id: state.count, comments: [] }]
       };
 
     case DELETE_POST:
       return {
-        ...state, 
-        posts: state.posts.filter(post =>  post.id !== +action.payload)
+        ...state,
+        posts: state.posts.filter(post => post.id !== +action.payload)
       }
 
     case EDIT_POST:
       return {
-        ...state, 
+        ...state,
         posts: state.posts.map(post => {
           if (post.id === action.payload.id) {
-            return {...post, ...action.payload}
+            return { ...post, ...action.payload }
           }
           return post;
         })
@@ -33,23 +34,23 @@ function rootReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         posts: state.posts.map(post => {
-          if(post.id === +action.payload.id) {
-            return { ...post, comments: [...post.comments, action.payload.comment]};
+          if (post.id === +action.payload.id) {
+            return { ...post, comments: [...post.comments, { ...action.payload.comment, id: uuid() }] };
           }
           return post;
         })
       }
 
-      case DELETE_COMMENT:
-        return {
-          ...state,
-          posts: state.posts.map(post => {
-            if(post.id === +action.payload.id) {
-              return { ...post, comments: post.comments.filter(comment =>  comment.id !== action.payload)};
-            }
-            return post;
-          })
-        }
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (post.id === +action.payload.postId) {
+            return { ...post, comments: post.comments.filter(comment => comment.id !== action.payload.commentId) };
+          }
+          return post;
+        })
+      }
 
     default:
       return state;

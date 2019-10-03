@@ -27,9 +27,9 @@ export function addComment(id, comment) {
 }
 
 //will need both postid and id
-export function deleteComment(id) {
+export function deleteComment(postId, commentId) {
   return {
     type: DELETE_COMMENT,
-    payload: id
+    payload: { postId, commentId }
   }
 }

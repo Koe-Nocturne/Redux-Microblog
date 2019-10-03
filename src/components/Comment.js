@@ -8,13 +8,14 @@ class Comment extends Component {
   }
 
   handleDelete() {
+    this.props.deleteComment(this.props.postId, this.props.comment.id)
     // this.props.deleteComment(); //will need comment id as param as well as this.props.postId
   }
 
   render() {
     return (
       <div>
-        <button>
+        <button onClick={this.handleDelete}>
           <i className="fas fa-eraser"></i>
         </button>
         <p>{this.props.comment.comment}</p>
