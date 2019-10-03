@@ -1,11 +1,28 @@
 import { ADD_POST, DELETE_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT } from './actionTypes';
+import axios from 'axios';
 
-export function addPost(postData) {
-  return {
-    type: ADD_POST,
-    payload: postData
+const BASE_URL = 'http://localhost:5000'
+
+export function addPostFromAPI(data) {
+  return async function (dispatch) {
+    try {
+      let res = await axios.post(`${BASE_URL}/api/posts/`, data);
+      console.log(res);
+      dispatch(addPost(res.data))
+    } catch (e) {
+      dispatch(handleError(e));
+    }
+
+    // type: ADD_POST,
+    // payload: postData
   }
 }
+
+function addPost(postData) {
+  return {type: ADD_POST,
+    payload: postData }
+}
+
 export function deletePost(id) {
   return {
     type: DELETE_POST,
@@ -32,4 +49,7 @@ export function deleteComment(postId, commentId) {
     type: DELETE_COMMENT,
     payload: { postId, commentId }
   }
+}
+function handleError(e) {
+  return { type: "ERROR", error: e }
 }

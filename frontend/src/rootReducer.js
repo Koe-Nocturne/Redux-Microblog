@@ -10,7 +10,10 @@ function rootReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         count: state.count + 1,
-        posts: [...state.posts, { ...action.payload, id: state.count, comments: [] }]
+        posts: [
+          ...state.posts,
+          { ...action.payload, id: state.count, comments: [] }
+        ]
       };
 
     case DELETE_POST:
@@ -35,7 +38,14 @@ function rootReducer(state = INITIAL_STATE, action) {
         ...state,
         posts: state.posts.map(post => {
           if (post.id === +action.payload.id) {
-            return { ...post, comments: [...post.comments, { ...action.payload.comment, id: uuid() }] };
+            return {
+              ...post,
+              comments: [
+                ...post.comments, {
+                  ...action.payload.comment, id: uuid()
+                }
+              ]
+            };
           }
           return post;
         })
@@ -46,11 +56,16 @@ function rootReducer(state = INITIAL_STATE, action) {
         ...state,
         posts: state.posts.map(post => {
           if (post.id === +action.payload.postId) {
-            return { ...post, comments: post.comments.filter(comment => comment.id !== action.payload.commentId) };
+            return {
+              ...post,
+              comments: post.comments.filter(
+                comment => comment.id !== action.payload.commentId
+              )
+            };
           }
           return post;
         })
-      }
+      };
 
     default:
       return state;

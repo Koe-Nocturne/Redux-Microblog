@@ -1,14 +1,22 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { Navbar, Nav, NavItem, Jumbotron } from "reactstrap";
 
 class NavBar extends Component {
   render() {
+    const header = this.props.location.pathname === "/" ? (
+      <div>
+        <h1 className="display-3">Microblog</h1>
+        <p className="lead">Get into the Rithm of blogging</p>
+      </div> 
+      ) : (
+        null
+      );
+
     return (
       <div className="container-fluid">
         <Jumbotron>
-          <h1 className="display-3">Microblog</h1>
-          <p className="lead">Get into the Rithm of blogging</p>
+          {header}
           <Navbar className="row" expand="md">
             <Nav className="lead col-float-left" navbar>
               <NavLink exact to="/">
@@ -30,4 +38,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

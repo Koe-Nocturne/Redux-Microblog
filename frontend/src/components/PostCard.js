@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 class PostCard extends React.Component{
   render() {
     const { title, description, id } = this.props.post;
+    
     return(
       <Card className="col-4">
         <CardBody>

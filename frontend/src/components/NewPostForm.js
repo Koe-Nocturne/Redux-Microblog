@@ -29,18 +29,20 @@ class NewPostForm extends React.Component {
   }
 
   //eventually will be async/await
-  handleSubmit(evt) {
+  async handleSubmit(evt) {
     evt.preventDefault();
-    if (this.props.addPost) {
-      this.props.addPost(this.state);
+    if (this.props.addPostFromAPI) {
+      await this.props.addPostFromAPI(this.state);
     } else {
       this.props.editPost({...this.state, id: this.props.post.id});
     }
-    this.props.history.push("/");
+    this.goHome();
   }
+  
   goHome() {
     this.props.history.push("/");
-  }
+  };
+
   render() {
     return (
       <div className="container">
