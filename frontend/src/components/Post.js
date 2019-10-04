@@ -25,7 +25,6 @@ class Post extends React.Component {
   render() {
     const { id } = this.props.match.params;
     const { post } = this.props;
-    console.table("post component props", this.props)
     if (!post) return <Redirect to="/" />;
 
     const Body = this.state.notEdit ? (

@@ -16,7 +16,7 @@ function rootReducer(state = INITIAL_STATE, action) {
       const { id, title, description } = action.payload;
       return {
         ...state,
-        posts: [...state.posts, { ...action.payload }],
+        posts: [...state.posts, { ...action.payload, comments: [] }],
         titles: [...state.titles, { id, title, description }]
       };
     }
@@ -37,11 +37,11 @@ function rootReducer(state = INITIAL_STATE, action) {
           }
           return post;
         }),
-        titles: state.titles.map(title => {
-          if (title.id === id) {
-            return { ...title, title, description };
+        titles: state.titles.map(t => {
+          if (t.id === id) {
+            return { ...t, title, description };
           }
-          return title;
+          return t;
         })
       };
     }
@@ -55,7 +55,7 @@ function rootReducer(state = INITIAL_STATE, action) {
               comments: [
                 ...post.comments,
                 {
-                  ...action.payload.text
+                  ...action.payload.comment
                 }
               ]
             };
@@ -81,10 +81,9 @@ function rootReducer(state = INITIAL_STATE, action) {
       };
 
     case GET_ALL_POSTS:
-      console.log("Rootreducer titles:", state.titles);
       return {
         ...state,
-        posts: [...state.posts, ...action.payload]
+        posts: [...state.posts, ...action.payload.posts]
       };
 
     case GET_ALL_TITLES:

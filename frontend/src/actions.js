@@ -29,7 +29,7 @@ export function editPostFromAPI(data) {
   return async function (dispatch) {
     try {
       let res = await axios.put(`${BASE_URL}/api/posts/${data.id}`, data);
-      console.log(res);
+
       dispatch(editPost(res.data))
     } catch (e) {
       dispatch(handleError(e));
@@ -40,22 +40,19 @@ export function editPostFromAPI(data) {
 export function addCommentFromAPI(postId, data) {
   return async function (dispatch) {
     try {
-      console.log("actions delete comment", typeof postId, data)
       let res = await axios.post(`${BASE_URL}/api/posts/${postId}/comments/`, data);
-      console.log(res);
-      dispatch(addComment(res.data))
+      dispatch(addComment(postId, res.data))
     } catch (e) {
       dispatch(handleError(e));
     }
   }
 }
 
-export function deleteCommentFromAPI(data) {
+export function deleteCommentFromAPI(postId, commentId) {
   return async function (dispatch) {
     try {
-      let res = await axios.post(`${BASE_URL}/api/posts/`, data);
-      console.log(res);
-      dispatch(deleteComment(res.data));
+      await axios.delete(`${BASE_URL}/api/posts/${postId}/comments/${commentId}`);
+      dispatch(deleteComment(postId, commentId));
     } catch (e) {
       dispatch(handleError(e));
     }
@@ -66,7 +63,7 @@ export function getAllTitlesFromAPI() {
   return async function (dispatch) {
     try {
       let res = await axios.get(`${BASE_URL}/api/posts/`);
-      console.log("getalltitltesfromapi:", res)
+
       dispatch(getAllTitles(res.data));
     } catch (e) {
       dispatch(handleError(e));
@@ -77,10 +74,13 @@ export function getAllTitlesFromAPI() {
 export function getAllPostsFromAPI(data) {
   return async function (dispatch) {
     try {
-      let promises = data.map(title => axios.get(`${BASE_URL}/api/posts/${title.id}`))
+      let promises = data.map(title => (
+        axios.get(`${BASE_URL}/api/posts/${title.id}`)
+      ));
       let res = await Promise.all(promises);
-      console.log("getallpostsfromAPI:", res)
-      dispatch(getAllPosts(res.data));
+      let resData = res.map(obj => obj.data);
+
+      dispatch(getAllPosts(resData));
     } catch (e) {
       dispatch(handleError(e));
     }
@@ -105,10 +105,10 @@ function editPost(postData) {
   }
 }
 
-function addComment(id, text) {
+function addComment(id, comment) {
   return {
     type: ADD_COMMENT,
-    payload: { id, text }
+    payload: { id, comment }
   }
 }
 

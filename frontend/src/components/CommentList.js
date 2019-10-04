@@ -4,10 +4,10 @@ import NewCommentForm from "./NewCommentForm";
 
 class CommentList extends React.Component {
   render() {
-    console.log("commentlist props", this.props)
     const comments = this.props.comments.map(comment => (
       <Comment postId={this.props.id} key={comment.id} comment={comment} deleteComment={this.props.deleteCommentFromAPI}/>
     ));
+
     return (
       <div>
         {comments}
