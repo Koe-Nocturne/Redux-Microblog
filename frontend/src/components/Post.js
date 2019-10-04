@@ -18,15 +18,14 @@ class Post extends React.Component {
   }
 
   handleDelete() {
-    this.props.deletePost(this.props.match.params.id);
+    this.props.deletePostFromAPI(this.props.match.params.id);
     this.props.history.push("/");
   }
 
   render() {
     const { id } = this.props.match.params;
     const { post } = this.props;
-     console.assert(post, "THis is failing");
-     console.log(post, "THis is failing");
+    console.table("post component props", this.props)
     if (!post) return <Redirect to="/" />;
 
     const Body = this.state.notEdit ? (

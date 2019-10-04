@@ -34,7 +34,8 @@ class NewPostForm extends React.Component {
     if (this.props.addPostFromAPI) {
       await this.props.addPostFromAPI(this.state);
     } else {
-      this.props.editPost({...this.state, id: this.props.post.id});
+      console.log("edit form state", {...this.state, id: this.props.post.id})
+      this.props.editPostFromAPI({...this.state, id: this.props.post.id});
     }
     this.goHome();
   }

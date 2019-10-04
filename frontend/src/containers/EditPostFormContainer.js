@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { editPost } from '../actions';
+import { editPostFromAPI } from '../actions';
 import NewPostForm from '../components/NewPostForm';
 
-export default connect(undefined, { editPost })(NewPostForm);
+export default connect(undefined, { editPostFromAPI })(NewPostForm);

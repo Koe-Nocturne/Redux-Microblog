@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import PostCard from './PostCard'
 
 class PostList extends Component {
+  //call getallposts
+
   render() {
-    const { posts } = this.props;
+    const { titles } = this.props;
     
-    let postCards = posts.map(post => (
+    let postCards = titles.map(post => (
       <PostCard key={post.id} post={post} />
     ));
 

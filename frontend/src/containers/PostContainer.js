@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { deletePost, editPost } from '../actions';
+import { deletePostFromAPI, editPostFromAPI } from '../actions';
 import Post from '../components/Post';
 
 function mapStateToProps(state, ownProps) {
@@ -11,4 +11,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, { deletePost, editPost })(Post));
+export default withRouter(connect(mapStateToProps, { deletePostFromAPI, editPostFromAPI })(Post));

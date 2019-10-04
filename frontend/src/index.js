@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import AppContainer from './containers/AppContainer'
 
 import rootReducer from "./rootReducer";
 import { createStore, applyMiddleware } from "redux";
@@ -17,7 +17,7 @@ const store = createStore(rootReducer,
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <AppContainer />
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

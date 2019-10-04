@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import NewPostFormContainer from '../containers/NewPostFormContainer';
-import Home from '../Home';
+import Home from './Home';
 import PostContainer from '../containers/PostContainer';
 
 class Routes extends React.Component {

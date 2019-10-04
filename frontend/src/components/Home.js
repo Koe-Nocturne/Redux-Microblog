@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PostListContainer from "./containers/PostListContainer";
+import PostListContainer from "../containers/PostListContainer";
 
 class Home extends Component {
   render() {

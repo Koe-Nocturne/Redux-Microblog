@@ -6,7 +6,7 @@ class NewCommentForm extends React.Component {
     super(props);
 
     this.state = {
-      comment: ""
+      text: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,10 +18,10 @@ class NewCommentForm extends React.Component {
   }
 
   //eventually will be async/await
-  handleSubmit(evt) {
+  async handleSubmit(evt) {
     evt.preventDefault();
-    this.props.addComment(this.props.id, this.state);
-    this.setState({ comment: "" })
+    await this.props.addComment(this.props.id, this.state);
+    this.setState({ text: "" })
   }
   
   render() {
@@ -31,10 +31,10 @@ class NewCommentForm extends React.Component {
           <FormGroup>
             <Input
               type="text"
-              name="comment"
-              id="comment"
+              name="text"
+              id="text"
               placeholder="New Comment"
-              value={this.state.comment}
+              value={this.state.text}
               onChange={this.handleChange}
             />
           </FormGroup>
