@@ -34,8 +34,12 @@ class Post extends React.Component {
   render() {
     const { id } = this.props.match.params;
     const { post } = this.props;
+
+    // If there is no post redirect to home page
     if (!post) return <Redirect to="/" />;
 
+    // If the state value of notEdit is true show the post
+    // else render the editPostForm
     const Body = this.state.notEdit ? (
       <div className="container-fluid mx-3">
         <h2>{post.title}</h2>
