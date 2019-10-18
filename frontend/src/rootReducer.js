@@ -5,7 +5,9 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   GET_ALL_POSTS,
-  GET_ALL_TITLES
+  GET_ALL_TITLES,
+  UPVOTE,
+  DOWNVOTE
 } from "./actionTypes";
 
 const INITIAL_STATE = { posts: [], titles: [] };
@@ -90,6 +92,52 @@ function rootReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         titles: [...state.titles, ...action.payload.titles]
+      };
+
+    case UPVOTE:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (post.id === action.payload.id) {
+            return {
+              ...post,
+              votes: post.votes + 1
+            };
+          }
+          return post;
+        }),
+        titles: state.titles.map(post => {
+          if (+post.id === +action.payload.id) {
+            return {
+              ...post,
+              votes: post.votes + 1
+            };
+          }
+          return post;
+        })
+      };
+
+    case DOWNVOTE:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (+post.id === +action.payload.id) {
+            return {
+              ...post,
+              votes: post.votes - 1
+            };
+          }
+          return post;
+        }),
+        titles: state.titles.map(post => {
+          if (+post.id === +action.payload.id) {
+            return {
+              ...post,
+              votes: post.votes - 1
+            };
+          }
+          return post;
+        })
       };
 
     default:

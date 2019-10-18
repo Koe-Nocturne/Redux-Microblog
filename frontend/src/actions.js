@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT, GET_ALL_POSTS, GET_ALL_TITLES } from './actionTypes';
+import { ADD_POST, DELETE_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT, GET_ALL_POSTS, GET_ALL_TITLES, UPVOTE, DOWNVOTE } from './actionTypes';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000'
@@ -87,6 +87,33 @@ export function getAllPostsFromAPI(data) {
   }
 }
 
+export function upVoteFromAPI(data) {
+  return async function (dispatch) {
+    try {
+      axios.post(`${BASE_URL}/api/posts/${data}/vote/up`);
+
+      dispatch(upVote(data));
+    } catch (e) {
+      dispatch(handleError(e));
+    }
+  }
+}
+export function downVoteFromAPI(data) {
+  return async function (dispatch) {
+    try {
+      axios.post(`${BASE_URL}/api/posts/${data}/vote/down`);
+
+      dispatch(downVote(data));
+    } catch (e) {
+      dispatch(handleError(e));
+    }
+  }
+}
+
+
+
+
+
 function addPost(postData) {
   return {type: ADD_POST,
     payload: postData }
@@ -130,6 +157,18 @@ function getAllPosts(posts) {
   return {
     type: GET_ALL_POSTS,
     payload: { posts }
+  }
+}
+function upVote(id) {
+  return {
+    type: UPVOTE,
+    payload: { id }
+  }
+}
+function downVote(id) {
+  return {
+    type: DOWNVOTE,
+    payload: { id }
   }
 }
 

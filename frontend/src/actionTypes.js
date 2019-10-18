@@ -5,3 +5,5 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const GET_ALL_TITLES = "GET_ALL_TITLES";
 export const GET_ALL_POSTS = "GET_ALL_POSTS";
+export const UPVOTE = "UPVOTE";
+export const DOWNVOTE = "DOWNVOTE";

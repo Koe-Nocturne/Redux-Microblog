@@ -11,6 +11,8 @@ class Post extends React.Component {
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleUpVote = this.handleUpVote.bind(this);
+    this.handleDownVote = this.handleDownVote.bind(this);
   }
 
   handleToggle() {
@@ -20,6 +22,13 @@ class Post extends React.Component {
   handleDelete() {
     this.props.deletePostFromAPI(this.props.match.params.id);
     this.props.history.push("/");
+  }
+
+  async handleUpVote() {
+    await this.props.upVoteFromAPI(this.props.post.id);
+  }
+  async handleDownVote() {
+    await this.props.downVoteFromAPI(this.props.post.id);
   }
 
   render() {
@@ -36,7 +45,14 @@ class Post extends React.Component {
         <button onClick={this.handleDelete}>
           <i className="fas fa-eraser"></i>
         </button>
-        <i>{post.description}</i>
+        <span>{post.votes} votes:</span>
+        <button onClick={this.handleUpVote}>
+          <i className="fas fa-arrow-up"></i>
+        </button>
+        <button onClick={this.handleDownVote}>
+          <i className="fas fa-arrow-down"></i>
+        </button>
+        <p>{post.description}</p>
         <p>{post.body}</p>
         <CommentListContainer id={id} comments={post.comments} />
       </div>
