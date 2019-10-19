@@ -85,20 +85,34 @@ I have not finished with react-microblog and would like to continue working on i
 - [ ] Improve CSS on post detail page
 - [ ] Improve CSS overall
 
+## Fun Expierments
+- [ ] Incorperate SASS
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to start the project
+
+To get the project running in development mode you will need to start up the back end then start up the front end. You will need two terminal tabs
+
+### Start the back end
+
+To start the back end use the first tab to: 
+1. Change directory to backend. 
+2. `Nodemon server.js`
+
+This will start the server on localhost:5000
+
+### start the front end
+
+To start the front end use the second tab to:
+1. Change directory to frontend
+2. `npm start`
+
+This will start the server on localhost:3000
+
 ## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
 ### `npm test`
 
