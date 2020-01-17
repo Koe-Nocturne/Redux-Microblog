@@ -89,11 +89,9 @@ I have not finished with react-microblog and would like to continue working on i
 - [ ] Incorperate SASS
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## How to start the project
 
-To get the project running in development mode you will need to start up the back end then start up the front end. You will need two terminal tabs
+To get the project running in development mode you will need to start up the back end then start up the front end. You will need two terminal tabs.
 
 ### Start the back end
 
@@ -107,7 +105,8 @@ This will start the server on localhost:5000
 
 To start the front end use the second tab to:
 1. Change directory to frontend
-2. `npm start`
+2. `npm i`
+3. `npm start`
 
 This will start the server on localhost:3000
 
